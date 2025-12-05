@@ -1,59 +1,39 @@
-"use client";
+// components/ui/ContactForm.tsx
+'use client';
+import React from 'react';
+import { Box, TextField, Button, Stack, Typography } from '@mui/material';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { sendEmail } from '../../lib/emailjs';
 
-import { useState } from "react";
-import { Stack, TextField, Button, Typography, Alert } from "@mui/material";
-import emailjs from "@emailjs/browser";
+interface FormInputs {
+  name: string;
+  email: string;
+  message: string;
+}
 
-export default function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+const ContactForm: React.FC = () => {
+  const { register, handleSubmit, reset } = useForm<FormInputs>();
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-
+  const onSubmit: SubmitHandler<FormInputs> = async (data) => {
     try {
-      await emailjs.sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-        e.target,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
-      );
-      setStatus("success");
-    } catch (err) {
-      setStatus("error");
+      await sendEmail(data);
+      alert('Gửi thành công!');
+      reset();
+    } catch {
+      alert('Có lỗi xảy ra. Vui lòng thử lại.');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Stack spacing={2}>
-        {status === "success" && <Alert severity="success">Gửi thành công!</Alert>}
-        {status === "error" && <Alert severity="error">Lỗi! Vui lòng thử lại.</Alert>}
-
-        <TextField name="name" label="Họ và tên" required fullWidth />
-        <TextField name="email" label="Email" required fullWidth />
-        <TextField name="phone" label="Số điện thoại" fullWidth />
-        <TextField
-          name="message"
-          label="Nội dung"
-          required
-          fullWidth
-          multiline
-          minRows={4}
-        />
-
-        <Button
-          type="submit"
-          variant="contained"
-          sx={{
-            bgcolor: "#1e40af",
-            ":hover": { bgcolor: "#162f87" },
-            py: 1.4,
-            fontWeight: 700,
-          }}
-        >
-          Gửi ngay
-        </Button>
+    <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ maxWidth: 600, mx: 'auto' }}>
+      <Stack spacing={3}>
+        <TextField label="Họ và tên" {...register('name', { required: true })} fullWidth />
+        <TextField label="Email" {...register('email', { required: true })} type="email" fullWidth />
+        <TextField label="Nội dung" {...register('message', { required: true })} multiline rows={4} fullWidth />
+        <Button type="submit" className="primary">Gửi liên hệ</Button>
       </Stack>
-    </form>
+    </Box>
   );
-}
+};
+
+export default ContactForm;

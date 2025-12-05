@@ -1,96 +1,67 @@
-"use client";
+// app/page.tsx
+'use client';
+import React from 'react';
+import Hero from '../components/ui/Hero';
+import { services } from '../data/services';
+import ServiceCard from '../components/ui/ServiceCard';
+import { projects } from '../data/projects';
+import ProjectCard from '../components/ui/ProjectCard';
+import { team } from '../data/team';
+import TeamCard from '../components/ui/TeamCard';
+import { testimonials } from '../data/testimonials';
+import TestimonialSlider from '../components/ui/TestimonialSlider';
+import StatsCounter from '../components/ui/StatsCounter';
+import { Stack, Box, Typography } from '@mui/material';
 
-import { Box, Typography, Stack, Button, Container } from "@mui/material";
-import Hero from "../components/ui/Hero";
-import ServiceCard from "../components/ui/ServiceCard";
-import ProjectCard from "../components/ui/ProjectCard";
-import TeamCard from "../components/ui/TeamCard";
-import TestimonialSlider from "../components/ui/TestimonialSlider";
-import StatsCounter from "../components/ui/StatsCounter";
+const HomePage: React.FC = () => {
+  const stats = [
+    { label: 'Dự án hoàn thành', value: 120 },
+    { label: 'Khách hàng hài lòng', value: 350 },
+    { label: 'Đội ngũ chuyên gia', value: 25 },
+  ];
 
-import services from "../data/services";
-import projects from "../data/projects";
-import team from "../data/team";
-import testimonials from "../data/testimonials";
-
-export default function HomePage() {
   return (
-    <Container maxWidth="lg">
+    <Stack spacing={12}>
       <Hero />
 
-      {/* DỊCH VỤ */}
-      <Stack spacing={4} mt={8}>
-        <Typography variant="h4" fontWeight="bold" color="var(--primary)">
-          Dịch vụ nổi bật
-        </Typography>
-
-        <Stack direction="row" spacing={3} flexWrap="wrap">
-          {services.slice(0, 3).map((item) => (
-            <ServiceCard key={item.slug} service={item} />
+      <Box className="section">
+        <Typography className="section-title">Dịch vụ nổi bật</Typography>
+        <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} justifyContent="center" flexWrap="wrap">
+          {services.map((s) => (
+            <ServiceCard key={s.slug} title={s.title} description={s.description} />
           ))}
         </Stack>
-      </Stack>
+      </Box>
 
-      {/* DỰ ÁN */}
-      <Stack spacing={4} mt={10}>
-        <Typography variant="h4" fontWeight="bold" color="var(--primary)">
-          Dự án tiêu biểu
-        </Typography>
-
-        <Stack direction="row" spacing={3} flexWrap="wrap">
-          {projects.slice(0, 6).map((item) => (
-            <ProjectCard key={item.id} project={item} />
+      <Box className="section" sx={{ bgcolor: '#f3f4f6' }}>
+        <Typography className="section-title">Dự án nổi bật</Typography>
+        <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} justifyContent="center" flexWrap="wrap">
+          {projects.map((p) => (
+            <ProjectCard key={p.slug} title={p.title} description={p.description} image={p.image} />
           ))}
         </Stack>
-      </Stack>
-
-      {/* STATS */}
-      <Box mt={12}>
-        <StatsCounter />
       </Box>
 
-      {/* TEAM */}
-      <Stack spacing={4} mt={10}>
-        <Typography variant="h4" fontWeight="bold" color="var(--primary)">
-          Đội ngũ của chúng tôi
-        </Typography>
+      <Box className="section">
+        <Typography className="section-title">Thống kê</Typography>
+        <StatsCounter stats={stats} />
+      </Box>
 
-        <Stack direction="row" spacing={3} flexWrap="wrap">
-          {team.slice(0, 4).map((member) => (
-            <TeamCard key={member.id} member={member} />
+      <Box className="section" sx={{ bgcolor: '#f3f4f6' }}>
+        <Typography className="section-title">Đội ngũ chuyên gia</Typography>
+        <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} justifyContent="center" flexWrap="wrap">
+          {team.map((t) => (
+            <TeamCard key={t.name} name={t.name} role={t.role} photo={t.photo} />
           ))}
         </Stack>
-      </Stack>
-
-      {/* TESTIMONIALS */}
-      <Box mt={12}>
-        <TestimonialSlider items={testimonials} />
       </Box>
 
-      {/* CTA */}
-      <Box
-        mt={12}
-        p={6}
-        bgcolor="var(--primary)"
-        color="white"
-        borderRadius={3}
-        textAlign="center"
-      >
-        <Typography variant="h4" fontWeight="bold" mb={2}>
-          Liên hệ ngay để hợp tác!
-        </Typography>
-        <Typography mb={4}>
-          Chúng tôi luôn sẵn sàng đồng hành cùng doanh nghiệp của bạn.
-        </Typography>
-
-        <Button
-          variant="contained"
-          sx={{ backgroundColor: "var(--gold)", color: "#000" }}
-          href="/lien-he"
-        >
-          Liên hệ ngay
-        </Button>
+      <Box className="section">
+        <Typography className="section-title">Khách hàng nói về chúng tôi</Typography>
+        <TestimonialSlider testimonials={testimonials} />
       </Box>
-    </Container>
+    </Stack>
   );
-}
+};
+
+export default HomePage;

@@ -1,22 +1,16 @@
-"use client";
+// app/lien-he/page.tsx
+'use client';
+import React from 'react';
+import { Box, Typography } from '@mui/material';
+import ContactForm from '../../components/ui/ContactForm';
 
-import { Container, Typography, Box } from "@mui/material";
-import ContactForm from "../../components/ui/ContactForm";
-
-export default function LienHePage() {
+const LienHePage: React.FC = () => {
   return (
-    <Container maxWidth="sm" sx={{ py: 8 }}>
-      <Typography variant="h3" fontWeight="bold" color="var(--primary)">
-        Liên hệ
-      </Typography>
-
-      <Typography mt={2}>
-        Gửi thông tin cho chúng tôi, đội ngũ VietFresh sẽ phản hồi trong thời gian sớm nhất.
-      </Typography>
-
-      <Box mt={4}>
-        <ContactForm />
-      </Box>
-    </Container>
+    <Box className="section">
+      <Typography className="section-title">Liên hệ với chúng tôi</Typography>
+      <ContactForm />
+    </Box>
   );
-}
+};
+
+export default LienHePage;

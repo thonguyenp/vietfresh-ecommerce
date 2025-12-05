@@ -1,41 +1,29 @@
-"use client";
-
-import { ReactNode } from "react";
-import Head from "next/head";
-import "./globals.css";
-import Header from "../components/layout/Header";
-import Footer from "../components/layout/Footer";
-import { CssBaseline, Box } from "@mui/material";
+// app/layout.tsx
+import React from 'react';
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
+import '../app/globals.css';
 
 export const metadata = {
-  title: "VietFresh - Công Ty Rau Củ Quả",
-  description:
-    "Doanh nghiệp cung cấp rau củ quả sạch, nông sản chất lượng cao – VietFresh Việt Nam.",
+  title: 'VietFresh - Rau củ quả tươi sạch',
+  description: 'VietFresh cung cấp rau củ quả tươi sạch, an toàn và hữu cơ.',
   openGraph: {
-    title: "VietFresh",
-    description: "Nông sản sạch - Rau củ quả chất lượng cao",
-    url: "https://vietfresh.vn",
-    siteName: "VietFresh",
-    type: "website",
+    title: 'VietFresh - Rau củ quả tươi sạch',
+    description: 'VietFresh cung cấp rau củ quả tươi sạch, an toàn và hữu cơ.',
+    images: [{ url: '/images/hero.jpg' }],
   },
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <html lang="vi">
-      <Head>
-        <meta name="theme-color" content="#1e40af" />
-      </Head>
-
       <body>
-        <CssBaseline />
-
         <Header />
-
-        <Box component="main">{children}</Box>
-
+        <main>{children}</main>
         <Footer />
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

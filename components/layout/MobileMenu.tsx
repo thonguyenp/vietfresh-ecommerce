@@ -1,53 +1,35 @@
-"use client";
-
-import { Drawer, Box, Stack, Button, IconButton } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import Link from "next/link";
+// components/layout/MobileMenu.tsx
+'use client';
+import React from 'react';
+import { Box, Stack, IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import Link from 'next/link';
 
 interface MobileMenuProps {
   open: boolean;
   onClose: () => void;
 }
 
-export default function MobileMenu({ open, onClose }: MobileMenuProps) {
-  const navItems = [
-    { label: "Trang chủ", href: "/" },
-    { label: "Giới thiệu", href: "/gioi-thieu" },
-    { label: "Dịch vụ", href: "/dich-vu" },
-    { label: "Dự án", href: "/du-an" },
-    { label: "Đội ngũ", href: "/doi-ngu" },
-    { label: "Liên hệ", href: "/lien-he" },
-  ];
-
+const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose }) => {
+  if (!open) return null;
   return (
-    <Drawer anchor="right" open={open} onClose={onClose}>
-      <Box sx={{ width: 260, p: 3 }}>
-        <Stack direction="row" justifyContent="space-between" alignItems="center">
-          <Box sx={{ fontSize: 20, fontWeight: 700, color: "#1e40af" }}>Menu</Box>
-          <IconButton onClick={onClose}>
-            <CloseIcon />
-          </IconButton>
-        </Stack>
-
-        <Stack spacing={2} mt={4}>
-          {navItems.map((item) => (
-            <Link href={item.href} key={item.href}>
-              <Button
-                fullWidth
-                sx={{
-                  justifyContent: "flex-start",
-                  textTransform: "none",
-                  color: "#1e40af",
-                  fontSize: "1rem",
-                }}
-                onClick={onClose}
-              >
-                {item.label}
-              </Button>
-            </Link>
-          ))}
-        </Stack>
-      </Box>
-    </Drawer>
+    <Box sx={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100vh', bgcolor: '#1e40af', zIndex: 2000, p: 4 }}>
+      <Stack direction="row" justifyContent="flex-end">
+        <IconButton onClick={onClose} sx={{ color: '#fff' }}>
+          <CloseIcon />
+        </IconButton>
+      </Stack>
+      <Stack spacing={4} mt={4}>
+        <Link href="/" onClick={onClose} style={{ color: '#fff' }}>Trang chủ</Link>
+        <Link href="/gioi-thieu" onClick={onClose} style={{ color: '#fff' }}>Giới thiệu</Link>
+        <Link href="/dich-vu" onClick={onClose} style={{ color: '#fff' }}>Dịch vụ</Link>
+        <Link href="/du-an" onClick={onClose} style={{ color: '#fff' }}>Dự án</Link>
+        <Link href="/doi-ngu" onClick={onClose} style={{ color: '#fff' }}>Đội ngũ</Link>
+        <Link href="/lien-he" onClick={onClose} style={{ color: '#fff' }}>Liên hệ</Link>
+        <Link href="/tam-nhin" onClick={onClose} style={{ color: '#fff' }}>Tầm nhìn</Link>
+      </Stack>
+    </Box>
   );
-}
+};
+
+export default MobileMenu;

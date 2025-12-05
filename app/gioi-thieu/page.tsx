@@ -1,48 +1,31 @@
-"use client";
+// app/gioi-thieu/page.tsx
+'use client';
+import React from 'react';
+import { Box, Typography, Stack } from '@mui/material';
 
-import { Container, Typography, Box, Stack } from "@mui/material";
-
-export default function GioiThieuPage() {
+const GioiThieuPage: React.FC = () => {
   return (
-    <Container maxWidth="md" sx={{ py: 8 }}>
-      <Typography variant="h3" fontWeight="bold" color="var(--primary)">
-        Giới thiệu VietFresh
-      </Typography>
-
-      <Typography mt={4}>
-        VietFresh là doanh nghiệp chuyên cung cấp rau củ quả sạch, nông sản
-        tiêu chuẩn cao, phục vụ hàng nghìn đối tác trên toàn quốc.
-      </Typography>
-
-      <Box mt={6}>
-        <Typography variant="h4" fontWeight="bold">
-          Tầm nhìn
+    <Box className="section">
+      <Typography className="section-title">Giới thiệu về VietFresh</Typography>
+      <Stack spacing={4} maxWidth={800} mx="auto">
+        <Typography variant="body1">
+          VietFresh là công ty chuyên cung cấp rau củ quả tươi sạch, hữu cơ, mang đến cho khách hàng sản phẩm chất lượng cao, an toàn cho sức khỏe.
         </Typography>
-        <Typography mt={2}>
-          Trở thành đơn vị dẫn đầu về cung cấp nông sản sạch tại Việt Nam.
+        <Typography variant="h6">Tầm nhìn</Typography>
+        <Typography variant="body2">
+          Trở thành thương hiệu rau củ quả hữu cơ uy tín hàng đầu Việt Nam, mang lại giá trị dinh dưỡng tốt nhất cho mọi gia đình.
         </Typography>
-      </Box>
-
-      <Box mt={6}>
-        <Typography variant="h4" fontWeight="bold">
-          Sứ mệnh
+        <Typography variant="h6">Sứ mệnh</Typography>
+        <Typography variant="body2">
+          Cung cấp rau củ quả tươi sạch, an toàn, đồng thời hỗ trợ các trang trại áp dụng phương pháp hữu cơ và bền vững.
         </Typography>
-        <Typography mt={2}>
-          Mang đến thực phẩm an toàn – chất lượng – bền vững cho mọi gia đình.
+        <Typography variant="h6">Giá trị cốt lõi</Typography>
+        <Typography variant="body2">
+          Chất lượng – Minh bạch – Dịch vụ tận tâm – Bền vững.
         </Typography>
-      </Box>
-
-      <Box mt={6}>
-        <Typography variant="h4" fontWeight="bold">
-          Giá trị cốt lõi
-        </Typography>
-
-        <Stack mt={2} spacing={1}>
-          <Typography>• Chất lượng đặt lên hàng đầu</Typography>
-          <Typography>• Trung thực & Minh bạch</Typography>
-          <Typography>• Bền vững & Trách nhiệm với môi trường</Typography>
-        </Stack>
-      </Box>
-    </Container>
+      </Stack>
+    </Box>
   );
-}
+};
+
+export default GioiThieuPage;

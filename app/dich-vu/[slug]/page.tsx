@@ -1,30 +1,22 @@
-import { notFound } from "next/navigation";
-import services from "../../../data/services";
-import { Container, Typography, Box } from "@mui/material";
+// app/dich-vu/[slug]/page.tsx
+'use client';
+import React from 'react';
+import { useParams } from 'next/navigation';
+import { Box, Typography } from '@mui/material';
+import { services } from '../../../data/services';
 
-export default function DichVuDetailPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+const ServiceDetailPage: React.FC = () => {
+  const params = useParams();
   const service = services.find((s) => s.slug === params.slug);
 
-  if (!service) return notFound();
+  if (!service) return <Typography>Không tìm thấy dịch vụ</Typography>;
 
   return (
-    <Container maxWidth="md" sx={{ py: 8 }}>
-      <Typography variant="h3" fontWeight="bold" color="var(--primary)">
-        {service.title}
-      </Typography>
-
-      <Typography mt={3}>{service.description}</Typography>
-
-      <Box mt={6}>
-        <Typography variant="h5" fontWeight="bold">
-          Lợi ích
-        </Typography>
-        <Typography mt={2}>{service.benefits}</Typography>
-      </Box>
-    </Container>
+    <Box className="section" maxWidth={700} mx="auto">
+      <Typography variant="h4" fontWeight={700} mb={2}>{service.title}</Typography>
+      <Typography variant="body1">{service.description}</Typography>
+    </Box>
   );
-}
+};
+
+export default ServiceDetailPage;

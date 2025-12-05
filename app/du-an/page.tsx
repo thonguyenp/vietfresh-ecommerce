@@ -1,21 +1,21 @@
-"use client";
+// app/du-an/page.tsx
+'use client';
+import React from 'react';
+import { Box, Stack, Typography } from '@mui/material';
+import { projects } from '../../data/projects';
+import ProjectCard from '../../components/ui/ProjectCard';
 
-import { Container, Typography, Stack } from "@mui/material";
-import projects from "../../data/projects";
-import ProjectCard from "../../components/ui/ProjectCard";
-
-export default function DuAnPage() {
+const DuAnPage: React.FC = () => {
   return (
-    <Container maxWidth="lg" sx={{ py: 8 }}>
-      <Typography variant="h3" fontWeight="bold" color="var(--primary)">
-        Dự án nổi bật
-      </Typography>
-
-      <Stack direction="row" flexWrap="wrap" spacing={3} mt={4}>
+    <Box className="section">
+      <Typography className="section-title">Dự án nổi bật</Typography>
+      <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} justifyContent="center" flexWrap="wrap">
         {projects.map((p) => (
-          <ProjectCard key={p.id} project={p} />
+          <ProjectCard key={p.slug} title={p.title} description={p.description} image={p.image} />
         ))}
       </Stack>
-    </Container>
+    </Box>
   );
-}
+};
+
+export default DuAnPage;

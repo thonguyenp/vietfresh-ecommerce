@@ -1,40 +1,50 @@
-"use client";
+// components/ui/StatsCounter.tsx
+'use client';
+import React, { useEffect, useState } from 'react';
+import { Box, Typography, Stack } from '@mui/material';
 
-import { useEffect, useState } from "react";
-import { Typography, Stack } from "@mui/material";
-
-interface Props {
+interface Stat {
   label: string;
   value: number;
-  duration?: number;
 }
 
-export default function StatsCounter({ label, value, duration = 1500 }: Props) {
-  const [count, setCount] = useState(0);
+interface StatsCounterProps {
+  stats: Stat[];
+}
+
+const StatsCounter: React.FC<StatsCounterProps> = ({ stats }) => {
+  const [counts, setCounts] = useState<number[]>(stats.map(() => 0));
 
   useEffect(() => {
-    let start = 0;
-    const increment = value / (duration / 16);
-
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= value) {
-        setCount(value);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 16);
-
-    return () => clearInterval(timer);
-  }, [value, duration]);
+    stats.forEach((stat, idx) => {
+      let start = 0;
+      const end = stat.value;
+      const increment = Math.ceil(end / 100);
+      const interval = setInterval(() => {
+        start += increment;
+        if (start >= end) {
+          start = end;
+          clearInterval(interval);
+        }
+        setCounts((prev) => {
+          const newCounts = [...prev];
+          newCounts[idx] = start;
+          return newCounts;
+        });
+      }, 20);
+    });
+  }, [stats]);
 
   return (
-    <Stack spacing={1} textAlign="center">
-      <Typography variant="h4" sx={{ fontWeight: 800, color: "#1e40af" }}>
-        {count.toLocaleString()}
-      </Typography>
-      <Typography sx={{ color: "gray" }}>{label}</Typography>
+    <Stack direction="row" justifyContent="center" spacing={8}>
+      {stats.map((s, i) => (
+        <Box key={i} sx={{ textAlign: 'center' }}>
+          <Typography variant="h4" fontWeight={700}>{counts[i]}</Typography>
+          <Typography variant="body1">{s.label}</Typography>
+        </Box>
+      ))}
     </Stack>
   );
-}
+};
+
+export default StatsCounter;

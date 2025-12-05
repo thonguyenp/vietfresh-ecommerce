@@ -1,21 +1,21 @@
-"use client";
+// app/doi-ngu/page.tsx
+'use client';
+import React from 'react';
+import { Box, Stack, Typography } from '@mui/material';
+import { team } from '../../data/team';
+import TeamCard from '../../components/ui/TeamCard';
 
-import { Container, Typography, Stack } from "@mui/material";
-import team from "../../data/team";
-import TeamCard from "../../components/ui/TeamCard";
-
-export default function DoiNguPage() {
+const DoiNguPage: React.FC = () => {
   return (
-    <Container maxWidth="lg" sx={{ py: 8 }}>
-      <Typography variant="h3" fontWeight="bold" color="var(--primary)">
-        Đội ngũ VietFresh
-      </Typography>
-
-      <Stack direction="row" spacing={3} flexWrap="wrap" mt={4}>
-        {team.map((member) => (
-          <TeamCard key={member.id} member={member} />
+    <Box className="section">
+      <Typography className="section-title">Đội ngũ chuyên gia</Typography>
+      <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} justifyContent="center" flexWrap="wrap">
+        {team.map((t) => (
+          <TeamCard key={t.name} name={t.name} role={t.role} photo={t.photo} />
         ))}
       </Stack>
-    </Container>
+    </Box>
   );
-}
+};
+
+export default DoiNguPage;

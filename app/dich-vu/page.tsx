@@ -1,21 +1,21 @@
-"use client";
+// app/dich-vu/page.tsx
+'use client';
+import React from 'react';
+import { Box, Stack, Typography } from '@mui/material';
+import { services } from '../../data/services';
+import ServiceCard from '../../components/ui/ServiceCard';
 
-import { Container, Typography, Stack } from "@mui/material";
-import ServiceCard from "../../components/ui/ServiceCard";
-import services from "../../data/services";
-
-export default function DichVuPage() {
+const DichVuPage: React.FC = () => {
   return (
-    <Container maxWidth="lg" sx={{ py: 8 }}>
-      <Typography variant="h3" fontWeight="bold" color="var(--primary)">
-        Dịch vụ của chúng tôi
-      </Typography>
-
-      <Stack direction="row" spacing={3} flexWrap="wrap" mt={4}>
-        {services.map((service) => (
-          <ServiceCard key={service.slug} service={service} />
+    <Box className="section">
+      <Typography className="section-title">Dịch vụ của chúng tôi</Typography>
+      <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} justifyContent="center" flexWrap="wrap">
+        {services.map((s) => (
+          <ServiceCard key={s.slug} title={s.title} description={s.description} />
         ))}
       </Stack>
-    </Container>
+    </Box>
   );
-}
+};
+
+export default DichVuPage;

@@ -1,72 +1,25 @@
-import Link from "next/link";
-import Image from "next/image";
-import { Stack, Box, Typography } from "@mui/material";
+// components/layout/Footer.tsx
+'use client';
+import React from 'react';
+import { Box, Stack, Typography, Link as MuiLink } from '@mui/material';
 
-export default function Footer() {
+const Footer: React.FC = () => {
   return (
-    <Box
-      component="footer"
-      sx={{
-        background: "#1e40af",
-        color: "white",
-        mt: 8,
-        pt: 6,
-        pb: 4,
-      }}
-    >
-      <Box className="container">
-        <Stack
-          direction={{ xs: "column", md: "row" }}
-          justifyContent="space-between"
-          spacing={4}
-        >
-          {/* LOGO */}
-          <Stack spacing={2}>
-            <Image
-              src="/images/logo.png"
-              width={60}
-              height={60}
-              alt="VietFresh"
-            />
-            <Typography sx={{ maxWidth: 280, color: "#e5e7eb" }}>
-              VietFresh — Nông sản sạch, chất lượng cao, vì sức khỏe cộng đồng.
-            </Typography>
-          </Stack>
-
-          {/* NAVIGATION */}
-          <Stack spacing={1}>
-            <Typography sx={{ fontWeight: 700, mb: 1 }}>Điều hướng</Typography>
-            <Link href="/">Trang chủ</Link>
-            <Link href="/gioi-thieu">Giới thiệu</Link>
-            <Link href="/dich-vu">Dịch vụ</Link>
-            <Link href="/du-an">Dự án</Link>
-            <Link href="/doi-ngu">Đội ngũ</Link>
-            <Link href="/lien-he">Liên hệ</Link>
-          </Stack>
-
-          {/* CONTACT */}
-          <Stack spacing={1}>
-            <Typography sx={{ fontWeight: 700, mb: 1 }}>Liên hệ</Typography>
-            <Typography>📍 123 Đường Xanh, TP. Nha Trang</Typography>
-            <Typography>📞 0901 234 567</Typography>
-            <Typography>✉ contact@vietfresh.vn</Typography>
-          </Stack>
+    <Box component="footer" sx={{ bgcolor: '#1e40af', color: '#fff', py: 6, px: 4 }}>
+      <Stack direction="column" spacing={2} alignItems="center">
+        <Typography variant="h6">VietFresh</Typography>
+        <Stack direction="row" spacing={4}>
+          <MuiLink href="/" color="inherit">Trang chủ</MuiLink>
+          <MuiLink href="/gioi-thieu" color="inherit">Giới thiệu</MuiLink>
+          <MuiLink href="/dich-vu" color="inherit">Dịch vụ</MuiLink>
+          <MuiLink href="/du-an" color="inherit">Dự án</MuiLink>
+          <MuiLink href="/doi-ngu" color="inherit">Đội ngũ</MuiLink>
+          <MuiLink href="/lien-he" color="inherit">Liên hệ</MuiLink>
         </Stack>
-
-        {/* COPYRIGHT */}
-        <Box
-          sx={{
-            textAlign: "center",
-            mt: 4,
-            pt: 3,
-            borderTop: "1px solid rgba(255,255,255,0.2)",
-            fontSize: "0.9rem",
-            color: "#e5e7eb",
-          }}
-        >
-          © {new Date().getFullYear()} VietFresh. All rights reserved.
-        </Box>
-      </Box>
+        <Typography variant="body2" sx={{ mt: 2 }}>© 2025 VietFresh. All rights reserved.</Typography>
+      </Stack>
     </Box>
   );
-}
+};
+
+export default Footer;

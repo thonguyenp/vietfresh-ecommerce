@@ -1,18 +1,15 @@
-import type { NextConfig } from "next";
+// next.config.ts
+import { NextConfig } from 'next';
+import path from 'path';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  experimental: {
-    optimizeCss: true
-  },
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "**"
-      }
-    ]
-  }
+    domains: ['images.unsplash.com'],
+  },
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
+  },
 };
 
 export default nextConfig;
