@@ -1,31 +1,40 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import CustomThemeProvider from "@/components/layout/CustomThemeProvider";
+"use client";
 
-export const metadata: Metadata = {
-  title: "NTU - Portfolio",
-  description: "Personal portfolio built with Next.js 16, React 19, MUI 7",
-  keywords: ["Portfolio", "Next.js", "React", "MUI", "Developer"],
-  metadataBase: new URL("https://your-domain.com"),
+import { ReactNode } from "react";
+import Head from "next/head";
+import "./globals.css";
+import Header from "../components/layout/Header";
+import Footer from "../components/layout/Footer";
+import { CssBaseline, Box } from "@mui/material";
+
+export const metadata = {
+  title: "VietFresh - Công Ty Rau Củ Quả",
+  description:
+    "Doanh nghiệp cung cấp rau củ quả sạch, nông sản chất lượng cao – VietFresh Việt Nam.",
   openGraph: {
-    title: "NTU Portfolio",
-    description: "Showcasing projects, skills, and services",
-    url: "https://your-domain.com",
-    images: ["/og-image.png"]
+    title: "VietFresh",
+    description: "Nông sản sạch - Rau củ quả chất lượng cao",
+    url: "https://vietfresh.vn",
+    siteName: "VietFresh",
+    type: "website",
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="vi">
+      <Head>
+        <meta name="theme-color" content="#1e40af" />
+      </Head>
+
       <body>
-        <CustomThemeProvider>
-          <Navbar />
-          {children}
-          <Footer />
-        </CustomThemeProvider>
+        <CssBaseline />
+
+        <Header />
+
+        <Box component="main">{children}</Box>
+
+        <Footer />
       </body>
     </html>
   );
