@@ -1,34 +1,64 @@
 // data/team.ts
 export interface TeamMember {
+  id: string;
   name: string;
-  role: string;
-  photo: string; // tự lấy từ unsplash
+  position: string;
+  imageUrl: string;
   bio: string;
+  social?: {
+    facebook?: string;
+    linkedin?: string;
+    instagram?: string;
+  };
 }
 
 export const team: TeamMember[] = [
   {
+    id: '1',
     name: 'Nguyễn Văn A',
-    role: 'CEO & Founder',
-    photo: 'https://images.unsplash.com/photo-1595152772835-219674b2a8a3',
-    bio: 'Nguyễn Văn A sáng lập công ty VietFresh với sứ mệnh mang rau củ sạch đến mọi nhà.',
+    position: 'CEO',
+    imageUrl: 'https://source.unsplash.com/400x400/?man,face&sig=1',
+    bio: 'Người sáng lập, điều hành công ty và chiến lược phát triển.',
+    social: { linkedin: '#', facebook: '#', instagram: '#' },
   },
   {
+    id: '2',
     name: 'Trần Thị B',
-    role: 'Giám đốc điều hành',
-    photo: 'https://images.unsplash.com/photo-1603415526960-f7e0328c8e3f',
-    bio: 'Trần Thị B chịu trách nhiệm vận hành và quản lý các dự án rau củ sạch của công ty.',
+    position: 'COO',
+    imageUrl: 'https://source.unsplash.com/400x400/?woman,face&sig=2',
+    bio: 'Quản lý vận hành, đảm bảo chất lượng dịch vụ và quy trình.',
+    social: { linkedin: '#', facebook: '#', instagram: '#' },
   },
   {
+    id: '3',
     name: 'Lê Văn C',
-    role: 'Trưởng phòng Marketing',
-    photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2',
-    bio: 'Lê Văn C xây dựng chiến lược marketing và quảng bá sản phẩm ra thị trường.',
+    position: 'CTO',
+    imageUrl: 'https://source.unsplash.com/400x400/?man,face&sig=3',
+    bio: 'Chịu trách nhiệm về công nghệ, website và hệ thống.',
+    social: { linkedin: '#', facebook: '#', instagram: '#' },
   },
   {
+    id: '4',
     name: 'Phạm Thị D',
-    role: 'Chuyên viên Dinh dưỡng',
-    photo: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36',
-    bio: 'Phạm Thị D tư vấn dinh dưỡng và đảm bảo sản phẩm phù hợp cho bữa ăn hàng ngày.',
+    position: 'Marketing Manager',
+    imageUrl: 'https://source.unsplash.com/400x400/?woman,face&sig=4',
+    bio: 'Lập kế hoạch marketing, quảng bá sản phẩm và chăm sóc khách hàng.',
+    social: { linkedin: '#', facebook: '#', instagram: '#' },
+  },
+  {
+    id: '5',
+    name: 'Ngô Văn E',
+    position: 'Sales Manager',
+    imageUrl: 'https://source.unsplash.com/400x400/?man,face&sig=5',
+    bio: 'Phát triển thị trường, chăm sóc đối tác và khách hàng.',
+    social: { linkedin: '#', facebook: '#', instagram: '#' },
+  },
+  {
+    id: '6',
+    name: 'Đặng Thị F',
+    position: 'Designer',
+    imageUrl: 'https://source.unsplash.com/400x400/?woman,face&sig=6',
+    bio: 'Thiết kế hình ảnh, giao diện website và bộ nhận diện thương hiệu.',
+    social: { linkedin: '#', facebook: '#', instagram: '#' },
   },
 ];
