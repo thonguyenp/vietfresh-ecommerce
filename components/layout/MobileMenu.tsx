@@ -1,35 +1,36 @@
-// components/layout/MobileMenu.tsx
 'use client';
-import React from 'react';
-import { Box, Stack, IconButton } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+
+import { Drawer, Stack, Button, Box } from '@mui/material';
 import Link from 'next/link';
 
-interface MobileMenuProps {
+interface Props {
   open: boolean;
   onClose: () => void;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose }) => {
-  if (!open) return null;
+export default function MobileMenu({ open, onClose }: Props) {
   return (
-    <Box sx={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100vh', bgcolor: '#1e40af', zIndex: 2000, p: 4 }}>
-      <Stack direction="row" justifyContent="flex-end">
-        <IconButton onClick={onClose} sx={{ color: '#fff' }}>
-          <CloseIcon />
-        </IconButton>
-      </Stack>
-      <Stack spacing={4} mt={4}>
-        <Link href="/" onClick={onClose} style={{ color: '#fff' }}>Trang chủ</Link>
-        <Link href="/gioi-thieu" onClick={onClose} style={{ color: '#fff' }}>Giới thiệu</Link>
-        <Link href="/dich-vu" onClick={onClose} style={{ color: '#fff' }}>Dịch vụ</Link>
-        <Link href="/du-an" onClick={onClose} style={{ color: '#fff' }}>Dự án</Link>
-        <Link href="/doi-ngu" onClick={onClose} style={{ color: '#fff' }}>Đội ngũ</Link>
-        <Link href="/lien-he" onClick={onClose} style={{ color: '#fff' }}>Liên hệ</Link>
-        <Link href="/tam-nhin" onClick={onClose} style={{ color: '#fff' }}>Tầm nhìn</Link>
-      </Stack>
-    </Box>
+    <Drawer
+      anchor="right"
+      open={open}
+      onClose={onClose}
+      PaperProps={{
+        sx: {
+          width: 260,
+          backdropFilter: 'blur(8px)'
+        }
+      }}
+    >
+      <Box p={3}>
+        <Stack spacing={2}>
+          <Button component={Link} href="/" onClick={onClose}>Trang chủ</Button>
+          <Button component={Link} href="/gioi-thieu" onClick={onClose}>Giới thiệu</Button>
+          <Button component={Link} href="/dich-vu" onClick={onClose}>Dịch vụ</Button>
+          <Button component={Link} href="/lien-he" onClick={onClose} variant="contained">
+            Liên hệ
+          </Button>
+        </Stack>
+      </Box>
+    </Drawer>
   );
-};
-
-export default MobileMenu;
+}

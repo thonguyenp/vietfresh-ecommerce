@@ -1,31 +1,19 @@
-// app/gioi-thieu/page.tsx
-'use client';
-import React from 'react';
-import { Box, Typography, Stack } from '@mui/material';
+import { Container, Stack, Typography } from '@mui/material';
 
-const GioiThieuPage: React.FC = () => {
+export default function AboutPage() {
   return (
-    <Box className="section">
-      <Typography className="section-title">Giới thiệu về VietFresh</Typography>
-      <Stack spacing={4} maxWidth={800} mx="auto">
-        <Typography variant="body1">
-          VietFresh là công ty chuyên cung cấp rau củ quả tươi sạch, hữu cơ, mang đến cho khách hàng sản phẩm chất lượng cao, an toàn cho sức khỏe.
+    <Container sx={{ py: 10 }}>
+      <Stack spacing={4}>
+        <Typography variant="h1">Giới thiệu VietFresh</Typography>
+        <Typography>
+          VietFresh ra đời với mong muốn mang rau củ quả sạch, an toàn và cao cấp
+          đến mọi gia đình Việt.
         </Typography>
-        <Typography variant="h6">Tầm nhìn</Typography>
-        <Typography variant="body2">
-          Trở thành thương hiệu rau củ quả hữu cơ uy tín hàng đầu Việt Nam, mang lại giá trị dinh dưỡng tốt nhất cho mọi gia đình.
-        </Typography>
-        <Typography variant="h6">Sứ mệnh</Typography>
-        <Typography variant="body2">
-          Cung cấp rau củ quả tươi sạch, an toàn, đồng thời hỗ trợ các trang trại áp dụng phương pháp hữu cơ và bền vững.
-        </Typography>
-        <Typography variant="h6">Giá trị cốt lõi</Typography>
-        <Typography variant="body2">
-          Chất lượng – Minh bạch – Dịch vụ tận tâm – Bền vững.
+        <Typography>
+          Chúng tôi tin rằng thực phẩm sạch là nền tảng cho sức khỏe bền vững
+          và cuộc sống hạnh phúc.
         </Typography>
       </Stack>
-    </Box>
+    </Container>
   );
-};
-
-export default GioiThieuPage;
+}

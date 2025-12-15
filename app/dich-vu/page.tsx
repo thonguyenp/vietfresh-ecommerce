@@ -1,21 +1,45 @@
-// app/dich-vu/page.tsx
 'use client';
-import React from 'react';
-import { Box, Stack, Typography } from '@mui/material';
-import { services } from '../../data/services';
-import ServiceCard from '../../components/ui/ServiceCard';
 
-const DichVuPage: React.FC = () => {
+import { Container, Stack, Typography, TextField, Pagination } from '@mui/material';
+import { services } from '@/lib/mockData';
+import { useState } from 'react';
+
+export default function ServicesPage() {
+  const [page, setPage] = useState(1);
+
   return (
-    <Box className="section">
-      <Typography className="section-title">Dịch vụ của chúng tôi</Typography>
-      <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} justifyContent="center" flexWrap="wrap">
-        {services.map((s) => (
-          <ServiceCard key={s.slug} title={s.title} description={s.description} />
-        ))}
-      </Stack>
-    </Box>
-  );
-};
+    <Container sx={{ py: 10 }}>
+      <Stack spacing={6}>
+        <Typography variant="h1">Dịch vụ VietFresh</Typography>
 
-export default DichVuPage;
+        <TextField
+          fullWidth
+          placeholder="Tìm kiếm dịch vụ..."
+          variant="outlined"
+        />
+
+        <Stack direction="row" spacing={4} flexWrap="wrap">
+          {services.map((service) => (
+            <Stack key={service.id} sx={{ width: 320 }} spacing={2}>
+              <img
+                src={service.image}
+                alt={service.title}
+                style={{ width: '100%', borderRadius: 16 }}
+              />
+              <Typography variant="h6">{service.title}</Typography>
+              <Typography variant="body2">{service.summary}</Typography>
+            </Stack>
+          ))}
+        </Stack>
+
+        <Pagination
+          count={3}
+          page={page}
+          onChange={(_, value) => setPage(value)}
+          size="large"
+          color="primary"
+        />
+      </Stack>
+    </Container>
+  );
+}

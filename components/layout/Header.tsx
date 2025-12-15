@@ -1,33 +1,50 @@
-// components/layout/Header.tsx
 'use client';
-import React, { useState } from 'react';
-import { Box, Stack, Typography, Button } from '@mui/material';
-import Link from 'next/link';
-import MobileMenu from './MobileMenu';
 
-const Header: React.FC = () => {
-  const [openMobile, setOpenMobile] = useState(false);
+import { AppBar, Box, Container, Stack, Toolbar, Typography, Button } from '@mui/material';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+
+export default function Header() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <Box component="header" sx={{ py: 2, px: 4, bgcolor: '#1e40af', color: '#fff', position: 'sticky', top: 0, zIndex: 1000 }}>
-      <Stack direction="row" alignItems="center" justifyContent="space-between">
-        <Typography variant="h5" fontWeight={700}>
-          <Link href="/">VietFresh</Link>
-        </Typography>
-        <Stack direction="row" spacing={4} sx={{ display: { xs: 'none', md: 'flex' } }}>
-          <Link href="/">Trang chủ</Link>
-          <Link href="/gioi-thieu">Giới thiệu</Link>
-          <Link href="/dich-vu">Dịch vụ</Link>
-          <Link href="/du-an">Dự án</Link>
-          <Link href="/doi-ngu">Đội ngũ</Link>
-          <Link href="/lien-he">Liên hệ</Link>
-          <Link href="/tam-nhin">Tầm nhìn</Link>
-        </Stack>
-        <Button sx={{ display: { xs: 'flex', md: 'none' } }} onClick={() => setOpenMobile(true)}>Menu</Button>
-      </Stack>
-      <MobileMenu open={openMobile} onClose={() => setOpenMobile(false)} />
-    </Box>
+    <AppBar
+      position="fixed"
+      elevation={scrolled ? 4 : 0}
+      sx={{
+        backgroundColor: scrolled ? '#ffffff' : 'rgba(255,255,255,0.6)',
+        backdropFilter: 'blur(10px)',
+        transition: 'all .3s ease'
+      }}
+    >
+      <Toolbar>
+        <Container>
+          <Stack direction="row" alignItems="center" justifyContent="space-between">
+            <Typography
+              variant="h5"
+              fontFamily="Playfair Display"
+              fontWeight={700}
+              color="primary"
+            >
+              VietFresh
+            </Typography>
+            <Stack direction="row" spacing={3} alignItems="center">
+              <Button component={Link} href="/">Trang chủ</Button>
+              <Button component={Link} href="/gioi-thieu">Giới thiệu</Button>
+              <Button component={Link} href="/dich-vu">Dịch vụ</Button>
+              <Button component={Link} href="/lien-he" variant="contained">
+                Liên hệ
+              </Button>
+            </Stack>
+          </Stack>
+        </Container>
+      </Toolbar>
+    </AppBar>
   );
-};
-
-export default Header;
+}

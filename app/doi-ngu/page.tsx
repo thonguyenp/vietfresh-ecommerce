@@ -1,21 +1,26 @@
-// app/doi-ngu/page.tsx
-'use client';
-import React from 'react';
-import { Box, Stack, Typography } from '@mui/material';
-import { team } from '../../data/team';
-import TeamCard from '../../components/ui/TeamCard';
+import { Container, Stack, Typography, Avatar } from '@mui/material';
+import { team } from '@/lib/mockData';
 
-const DoiNguPage: React.FC = () => {
+export default function TeamPage() {
   return (
-    <Box className="section">
-      <Typography className="section-title">Đội ngũ chuyên gia</Typography>
-      <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} justifyContent="center" flexWrap="wrap">
-        {team.map((t) => (
-          <TeamCard key={t.name} name={t.name} role={t.role} photo={t.photo} />
-        ))}
+    <Container sx={{ py: 10 }}>
+      <Stack spacing={6}>
+        <Typography variant="h1">Đội ngũ VietFresh</Typography>
+        <Stack direction="row" spacing={4} flexWrap="wrap">
+          {team.map((member) => (
+            <Stack key={member.id} spacing={2} alignItems="center" sx={{ width: 260 }}>
+              <Avatar src={member.avatar} sx={{ width: 120, height: 120 }} />
+              <Typography variant="h6">{member.name}</Typography>
+              <Typography variant="body2" color="text.secondary">
+                {member.position}
+              </Typography>
+              <Typography variant="body2" align="center">
+                {member.bio}
+              </Typography>
+            </Stack>
+          ))}
+        </Stack>
       </Stack>
-    </Box>
+    </Container>
   );
-};
-
-export default DoiNguPage;
+}

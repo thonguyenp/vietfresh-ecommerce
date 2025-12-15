@@ -1,22 +1,27 @@
-// app/dich-vu/[slug]/page.tsx
-'use client';
-import React from 'react';
-import { useParams } from 'next/navigation';
-import { Box, Typography } from '@mui/material';
-import { services } from '../../../data/services';
+import { Container, Stack, Typography } from '@mui/material';
+import { services } from '@/lib/mockData';
 
-const ServiceDetailPage: React.FC = () => {
-  const params = useParams();
-  const service = services.find((s) => s.slug === params.slug);
+export default async function ServiceDetailPage({ params }: 
+  { 
+  params: Promise<{ slug: string }>;
+   }) 
+  {
+  const { slug } = await params;
+  const service = services.find((s) => s.slug === slug);
 
-  if (!service) return <Typography>Không tìm thấy dịch vụ</Typography>;
+  if (!service) return null;
 
   return (
-    <Box className="section" maxWidth={700} mx="auto">
-      <Typography variant="h4" fontWeight={700} mb={2}>{service.title}</Typography>
-      <Typography variant="body1">{service.description}</Typography>
-    </Box>
+    <Container sx={{ py: 10 }}>
+      <Stack spacing={4}>
+        <Typography variant="h1">{service.title}</Typography>
+        <img
+          src={service.image}
+          alt={service.title}
+          style={{ width: '100%', borderRadius: 20 }}
+        />
+        <Typography>{service.content}</Typography>
+      </Stack>
+    </Container>
   );
-};
-
-export default ServiceDetailPage;
+}

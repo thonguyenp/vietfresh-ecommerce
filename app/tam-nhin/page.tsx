@@ -1,27 +1,19 @@
-// app/tam-nhin/page.tsx
-'use client';
-import React from 'react';
-import { Box, Typography, Stack } from '@mui/material';
+import { Container, Stack, Typography } from '@mui/material';
 
-const TamNhinPage: React.FC = () => {
+export default function VisionMissionPage() {
   return (
-    <Box className="section">
-      <Typography className="section-title">Tầm nhìn của chúng tôi</Typography>
-      <Stack spacing={3} maxWidth={800} mx="auto">
-        <Typography variant="body1">
-          VietFresh hướng tới trở thành thương hiệu rau củ quả hữu cơ hàng đầu Việt Nam, cung cấp sản phẩm sạch, an toàn, và giàu dinh dưỡng cho mọi gia đình.
+    <Container sx={{ py: 10 }}>
+      <Stack spacing={4}>
+        <Typography variant="h1">Tầm nhìn & Sứ mệnh</Typography>
+        <Typography>
+          Trở thành thương hiệu rau sạch hàng đầu Việt Nam về chất lượng
+          và trải nghiệm khách hàng.
         </Typography>
-        <Typography variant="h6">Sứ mệnh</Typography>
-        <Typography variant="body2">
-          Cung cấp rau củ quả tươi sạch, hỗ trợ các trang trại áp dụng phương pháp hữu cơ và bền vững.
-        </Typography>
-        <Typography variant="h6">Giá trị cốt lõi</Typography>
-        <Typography variant="body2">
-          Chất lượng – Minh bạch – Dịch vụ tận tâm – Bền vững.
+        <Typography>
+          Sứ mệnh của VietFresh là kết nối nông trại sạch với người tiêu dùng
+          hiện đại một cách minh bạch và bền vững.
         </Typography>
       </Stack>
-    </Box>
+    </Container>
   );
-};
-
-export default TamNhinPage;
+}

@@ -1,25 +1,18 @@
-// components/layout/Footer.tsx
-'use client';
-import React from 'react';
-import { Box, Stack, Typography, Link as MuiLink } from '@mui/material';
+import { Box, Container, Stack, Typography } from '@mui/material';
 
-const Footer: React.FC = () => {
+export default function Footer() {
   return (
-    <Box component="footer" sx={{ bgcolor: '#1e40af', color: '#fff', py: 6, px: 4 }}>
-      <Stack direction="column" spacing={2} alignItems="center">
-        <Typography variant="h6">VietFresh</Typography>
-        <Stack direction="row" spacing={4}>
-          <MuiLink href="/" color="inherit">Trang chủ</MuiLink>
-          <MuiLink href="/gioi-thieu" color="inherit">Giới thiệu</MuiLink>
-          <MuiLink href="/dich-vu" color="inherit">Dịch vụ</MuiLink>
-          <MuiLink href="/du-an" color="inherit">Dự án</MuiLink>
-          <MuiLink href="/doi-ngu" color="inherit">Đội ngũ</MuiLink>
-          <MuiLink href="/lien-he" color="inherit">Liên hệ</MuiLink>
+    <Box bgcolor="#1b5e20" color="#ffffff" py={6} mt={10}>
+      <Container>
+        <Stack spacing={2} alignItems="center">
+          <Typography variant="h6" fontFamily="Playfair Display">
+            VietFresh – Rau củ quả sạch cao cấp
+          </Typography>
+          <Typography variant="body2" align="center">
+            © {new Date().getFullYear()} VietFresh. Đồng hành cùng sức khỏe gia đình Việt.
+          </Typography>
         </Stack>
-        <Typography variant="body2" sx={{ mt: 2 }}>© 2025 VietFresh. All rights reserved.</Typography>
-      </Stack>
+      </Container>
     </Box>
   );
-};
-
-export default Footer;
+}
